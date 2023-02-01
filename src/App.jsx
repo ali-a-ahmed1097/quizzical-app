@@ -46,6 +46,7 @@ export default function App() {
           :
           <div className='home'>
             <div className='cards'>{questions}</div>
+            <button>Check answers</button>
           </div>
       }
     </div>

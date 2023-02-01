@@ -6,6 +6,20 @@ body {
   background: #F5F7FB;
 }
 
+h1 {
+  margin: 0;
+}
+
+h3 {
+  margin-top: 0px;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+h1, h3 {
+  color: #293264
+}
+
 .top-blob {
   position: absolute;
   width: 297px;
@@ -54,6 +68,7 @@ body {
   height: 100vh;
   justify-content: center;
   align-items: center;
+  gap: 10px;
 }
 
 .question-card {
@@ -80,4 +95,15 @@ hr {
   width: 100%;
   background-color: #DBDEF0;
   border: none;
+}
+
+button {
+  background: #4D5B9E;
+  border-radius: 15px;
+  border: 0px;
+  color: #F5F7FB;
+  padding: 10px 25px;
+  font-weight: 500;
+  font-size: 18px;
+  cursor: pointer;
 }
