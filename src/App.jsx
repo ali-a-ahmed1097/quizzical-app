@@ -13,8 +13,8 @@ export default function App() {
   const [correct, setCorrect] = React.useState(0);
   const [overlay, setOverlay] = React.useState(false);
 
-  async function generateQuiz() {
-    let response = await fetch('https://opentdb.com/api.php?amount=5');
+  async function generateQuiz(link) {
+    let response = await fetch(link);
     let questions = await response.json();
     setQuiz(questions.results.map(q => ({
       id: nanoid(),
@@ -37,8 +37,7 @@ export default function App() {
       setComplete(true);
       setCorrect(quiz.filter(q => q.selected === q.correct).length);
     } else {
-      setComplete(false);
-      generateQuiz();
+      setOverlay(true);
     }
   }
 
@@ -68,7 +67,7 @@ export default function App() {
             <button onClick={submitQuiz}>{complete ? 'Play again' : 'Check answers'}</button>
           </div>
       }
-      {overlay && <Overlay display={setOverlay} />}
+      {overlay && <Overlay display={setOverlay} generate={generateQuiz} complete={setComplete} />}
     </div>
   );
 }

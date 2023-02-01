@@ -26,13 +26,14 @@ export default function Overlay(props) {
 
         const link = `https://opentdb.com/api.php?amount=5${c}${d}${t}`;
 
-        console.log(link);
+        props.display(false);
+        props.generate(link);
+        props.complete(false);
     }
 
     return (
         <div className="full-overlay"
             onClick={(event) => {
-                event.preventDefault();
                 if (event.target === event.currentTarget) props.display(false);
             }}
         >
