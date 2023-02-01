@@ -11,10 +11,13 @@ export default function Question(props) {
             className='answer'
             onClick={() => props.handleClick(props.id, answer)}
             style={
+                props.disable
+                ? 
                 {
-                    backgroundColor: props.selected === answer ? '#D6DBF5' : '',
-                    opacity: (props.disable && props.answer !== answer) ? 0.5 : 1
+                    opacity: props.answer !== answer ? 0.5 : 1,
+                    backgroundColor: (props.answer === answer) ? '#94D7A2' : ((answer === props.selected) ? '#F8BCBC' : '')
                 }
+                : { backgroundColor: props.selected === answer ? '#D6DBF5' : '' }
             }
         >
             {HTRParser.parse(answer)}
