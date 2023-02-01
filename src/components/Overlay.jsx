@@ -2,16 +2,16 @@ import React from "react";
 import { category } from '../assets/categories';
 
 export default function Overlay(props) {
-    const [values, setValues] = React.useState({cat: 8, diff: 0, type: 0});
-    
-    const trivia = category.trivia.map((t, i) => <option key={i} value={i+8} >{t}</option>);
+    const [values, setValues] = React.useState({ cat: 8, diff: 0, type: 0 });
+
+    const trivia = category.trivia.map((t, i) => <option key={i} value={i + 8} >{t}</option>);
     const difficulty = category.difficulty.map((d, i) => <option key={i} value={i} >{d}</option>);
     const type = category.type.map((t, i) => <option key={i} value={i} >{t}</option>);
 
     function handleChange(event) {
-        const {name, value} = event.target;
+        const { name, value } = event.target;
         setValues(oldValues => (
-            {...oldValues, [name]: value}
+            { ...oldValues, [name]: value }
         ));
     }
 
@@ -23,14 +23,19 @@ export default function Overlay(props) {
 
         if (values.type - 0 === 1) t = '&type=multiple';
         else if (values.type - 0 === 2) t = '&type=boolean';
-        
+
         const link = `https://opentdb.com/api.php?amount=5${c}${d}${t}`;
 
         console.log(link);
     }
 
     return (
-        <div className="full-overlay">
+        <div className="full-overlay"
+            onClick={(event) => {
+                event.preventDefault();
+                if (event.target === event.currentTarget) props.display(false);
+            }}
+        >
             <div className="input-overlay">
                 <form className="input-overlay" onSubmit={generateLink}>
                     <label htmlFor="cat">Select category:</label>

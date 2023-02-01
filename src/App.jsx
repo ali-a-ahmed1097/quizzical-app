@@ -11,6 +11,7 @@ export default function App() {
   const [quiz, setQuiz] = React.useState([]);
   const [complete, setComplete] = React.useState(false);
   const [correct, setCorrect] = React.useState(0);
+  const [overlay, setOverlay] = React.useState(false);
 
   async function generateQuiz() {
     let response = await fetch('https://opentdb.com/api.php?amount=5');
@@ -59,7 +60,7 @@ export default function App() {
       <Blob />
       {
         questions.length === 0 ?
-          <Home generateQuiz={generateQuiz} />
+          <Home generateQuiz={() => setOverlay(true)} />
           :
           <div className='home'>
             <div className='cards'>{questions}</div>
@@ -67,7 +68,7 @@ export default function App() {
             <button onClick={submitQuiz}>{complete ? 'Play again' : 'Check answers'}</button>
           </div>
       }
-      <Overlay />
+      {overlay && <Overlay display={setOverlay} />}
     </div>
   );
 }
