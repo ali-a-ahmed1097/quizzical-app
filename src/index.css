@@ -64,7 +64,6 @@ h1, h3 {
 .home {
   display: flex;
   flex-direction: column;
-  width: 100vw;
   height: 100vh;
   justify-content: center;
   align-items: center;
@@ -106,4 +105,9 @@ button {
   font-weight: 500;
   font-size: 18px;
   cursor: pointer;
+}
+
+.score {
+  font-weight: 700;
+  color: #293264;
 }

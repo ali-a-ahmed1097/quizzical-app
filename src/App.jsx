@@ -7,6 +7,8 @@ import Question from './components/Question';
 
 export default function App() {
   const [quiz, setQuiz] = React.useState([]);
+  const [complete, setComplete] = React.useState(false);
+  const [correct, setCorrect] = React.useState(0);
 
   async function generateQuiz() {
     let response = await fetch('https://opentdb.com/api.php?amount=5&type=multiple');
@@ -21,9 +23,20 @@ export default function App() {
   }
 
   function selected(id, newSelected) {
-    setQuiz(oldQuiz => oldQuiz.map(q => {
-      return id === q.id ? { ...q, selected: newSelected } : q;
-    }));
+    if (!complete)
+      setQuiz(oldQuiz => oldQuiz.map(q => {
+        return id === q.id ? { ...q, selected: newSelected } : q;
+      }));
+  }
+
+  function submitQuiz() {
+    if (!complete) {
+      setComplete(true);
+      setCorrect(quiz.filter(q => q.selected === q.correct).length);
+    } else {
+      setComplete(false);
+      generateQuiz();
+    }
   }
 
   const questions = quiz.map(q => (
@@ -46,7 +59,8 @@ export default function App() {
           :
           <div className='home'>
             <div className='cards'>{questions}</div>
-            <button>Check answers</button>
+            {complete && <div className='score'>You scored {correct}/5 answers</div>}
+            <button onClick={submitQuiz}>{complete ? 'Play again' : 'Check answers'}</button>
           </div>
       }
     </div>
