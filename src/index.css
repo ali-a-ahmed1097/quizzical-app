@@ -118,7 +118,7 @@ button {
   top: 0px;
   width: 100vw;
   height: 100vh;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(3px);
 
   display: grid;
   justify-content: center;
@@ -133,4 +133,10 @@ button {
   padding: 5px 10px;
   gap: 4px;
   border-radius: 5px;
+  background: #D6DBF5;
+}
+
+label {
+  color: #293264;
+  font-weight: 700;
 }
