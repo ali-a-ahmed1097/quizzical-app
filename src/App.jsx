@@ -5,6 +5,7 @@ import shuffle from './knuth-fisher-yates-shuffle';
 import Home from './components/Home';
 import Blob from './components/Blob';
 import Question from './components/Question';
+import Overlay from './components/Overlay';
 
 export default function App() {
   const [quiz, setQuiz] = React.useState([]);
@@ -66,6 +67,7 @@ export default function App() {
             <button onClick={submitQuiz}>{complete ? 'Play again' : 'Check answers'}</button>
           </div>
       }
+      <Overlay />
     </div>
   );
 }
