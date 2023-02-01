@@ -1,6 +1,7 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
 import './App.css';
+import shuffle from './knuth-fisher-yates-shuffle';
 import Home from './components/Home';
 import Blob from './components/Blob';
 import Question from './components/Question';
@@ -16,7 +17,7 @@ export default function App() {
     setQuiz(questions.results.map(q => ({
       id: nanoid(),
       question: q.question,
-      potential: [...q.incorrect_answers, q.correct_answer],
+      potential: shuffle([...q.incorrect_answers, q.correct_answer]),
       correct: q.correct_answer,
       selected: ''
     })));
@@ -46,6 +47,8 @@ export default function App() {
       main={q.question}
       answers={q.potential}
       selected={q.selected}
+      answer={q.correct}
+      disable={complete}
       handleClick={selected}
     />
   ));

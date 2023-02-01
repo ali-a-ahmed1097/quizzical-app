@@ -10,7 +10,12 @@ export default function Question(props) {
             key={nanoid()}
             className='answer'
             onClick={() => props.handleClick(props.id, answer)}
-            style={{backgroundColor: props.selected === answer ? '#D6DBF5' : ''}}
+            style={
+                {
+                    backgroundColor: props.selected === answer ? '#D6DBF5' : '',
+                    opacity: (props.disable && props.answer !== answer) ? 0.5 : 1
+                }
+            }
         >
             {HTRParser.parse(answer)}
         </div>
