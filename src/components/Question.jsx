@@ -1,8 +1,26 @@
 import React from "react";
-import htmlToReact, { Parser } from "html-to-react";
+import { Parser } from "html-to-react";
+import { nanoid } from "nanoid";
 
 export default function Question(props) {
     const HTRParser = new Parser();
 
-    return <div>{HTRParser.parse(props.main)}</div>
+    const answers = props.answers.map(answer => (
+        <div
+            key={nanoid()}
+            className='answer'
+            onClick={() => props.handleClick(props.id, answer)}
+            style={{backgroundColor: props.selected === answer ? '#D6DBF5' : ''}}
+        >
+            {HTRParser.parse(answer)}
+        </div>
+    ));
+
+    return (
+        <div className="question-card">
+            <div className="main-question">{HTRParser.parse(props.main)}</div>
+            <div className="answers">{answers}</div>
+            <hr />
+        </div>
+    );
 }
