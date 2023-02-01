@@ -1,6 +1,8 @@
 export default function shuffle(array) {
     let counter = array.length;
 
+    if (counter === 2) return ['True', 'False'];
+
     // While there are elements in the array
     while (counter > 0) {
         // Pick a random index

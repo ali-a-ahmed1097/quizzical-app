@@ -12,7 +12,7 @@ export default function App() {
   const [correct, setCorrect] = React.useState(0);
 
   async function generateQuiz() {
-    let response = await fetch('https://opentdb.com/api.php?amount=5&type=multiple');
+    let response = await fetch('https://opentdb.com/api.php?amount=5');
     let questions = await response.json();
     setQuiz(questions.results.map(q => ({
       id: nanoid(),
