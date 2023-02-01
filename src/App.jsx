@@ -1,7 +1,9 @@
 import React from 'react';
+import { nanoid } from 'nanoid';
 import './App.css';
 import Home from './components/Home';
 import Blob from './components/Blob';
+import Question from './components/Question';
 
 export default function App() {
   const [quiz, setQuiz] = React.useState([]);
@@ -16,10 +18,19 @@ export default function App() {
     })));
   }
 
+  const questions = quiz.map(q => (
+    <Question key={nanoid()} main={q.question} />
+  ));
+  
   return (
     <div className='full'>
       <Blob />
-      <Home generateQuiz={generateQuiz} />
+      {
+        questions.length === 0 ?
+          <Home generateQuiz={generateQuiz} />
+          :
+          <div>{questions}</div>
+      }
     </div>
   );
 }
